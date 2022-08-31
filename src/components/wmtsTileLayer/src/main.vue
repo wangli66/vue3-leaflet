@@ -8,7 +8,8 @@
     import Options from '../../../mixins/Options.js';
     import { WMTS } from '../../../mapPlugin/WMTS.js';
     // import { DomEvent, extend } from 'leaflet';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const DomEvent = L.DomEvent;
     const extend = L.extend;
 

@@ -21,8 +21,9 @@
  *
  */
 import * as L from 'leaflet';
+const ImageOverlay = (L && L.ImageOverlay)?L.ImageOverlay:window.L.ImageOverlay;
 
-L.ImageOverlay.Rotated = L.ImageOverlay.extend({
+ImageOverlay.Rotated = ImageOverlay.extend({
 
     initialize: function(image, topleft, topright, bottomleft, options) {
 
@@ -182,5 +183,5 @@ L.ImageOverlay.Rotated = L.ImageOverlay.extend({
 // };
 
 export function ImageOverlayRotated(imgSrc, topleft, topright, bottomleft, options) {
-    return new L.ImageOverlay.Rotated(imgSrc, topleft, topright, bottomleft, options);
+    return new ImageOverlay.Rotated(imgSrc, topleft, topright, bottomleft, options);
 };

@@ -9,7 +9,8 @@
     // import { marker, icon, extend } from 'leaflet';
     import iconUrl from 'leaflet/dist/images/marker-icon.png';
     import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const marker = L.marker;
     const icon = L.icon;
     const extend = L.extend;

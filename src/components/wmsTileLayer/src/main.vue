@@ -7,7 +7,8 @@
 <script>
     import Options from '../../../mixins/Options.js';
     // import { tileLayer, extend } from 'leaflet';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const tileLayer = L.tileLayer;
     const extend = L.extend;
 

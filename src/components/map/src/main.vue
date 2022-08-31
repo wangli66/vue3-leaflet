@@ -9,7 +9,8 @@
     import { propsBinder, methodsBinder } from '../../../utils/utils.js';
     import { wktToGeoJSON, geojsonToWKT } from "@terraformer/wkt"
     // import { CRS, DomEvent, map, extend, latLngBounds, latLng } from 'leaflet';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+    import L from 'leaflet';
     const CRS = L.CRS;
     const DomEvent = L.DomEvent;
     const map = L.map;
@@ -62,6 +63,7 @@
                 originOptions: {
                     // crs: CRS.EPSG4326,
                     // CRS.EPSG3857 默认
+                    // crs: CRS.EPSG4326,
                     zoomControl: false,
                     attributionControl: false,
                     // center: [36.982253, 106.1312172],
@@ -112,12 +114,26 @@
             initMap() {
                 let crs = this.crs;
                 let crsObj = crs ? { crs: (typeof crs == 'string' ? CRS[crs] : crs) } : {};
-                this.selfOptions = extend(this.originOptions, this.options, this.$attrs, crsObj);
+                let _attrs={}, _listeners={};
+				let attrsObj = this.$attrs;
+				Object.keys(attrsObj).forEach(k=>{
+					if(k && k.startsWith('on')){
+						let newK = k.substring(2);
+						newK = newK && newK.toLowerCase()
+						_listeners[newK] = attrsObj[k];
+					}else{
+						_attrs[k] = attrsObj[k];
+					}
+				});
+
+				console.log('_listeners-----',_listeners);
+
+				this.selfOptions = extend(this.originOptions, this.options, _attrs, crsObj);
 
                 this.map = map(this.$el, this.selfOptions);
                 this.self = this.map;
 
-                DomEvent.on(this.self, this.$listeners);
+                DomEvent.on(this.self, _listeners);
                 // propsBinder(this, this.map, this.$attrs);
                 propsBinder(this, this.map, this.$options.props);
                 propsBinder(this, this.map, {}, this.options);
@@ -133,7 +149,7 @@
         mounted() {
             this.ensureMapDom();
         },
-        // beforeDestroy() {
+        // beforeMount() {
         //     this.map && this.map.remove();
         // },
     }

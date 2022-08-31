@@ -1,5 +1,3 @@
-import { imageOption } from "../map/provideBaseLayer.js";
-
 export default {
     data() {
         return {
@@ -58,7 +56,7 @@ export default {
         this.options = L.extend({}, this.originOptions, this.mapOptions, this.$attrs);
         this.ensureMapDom();
     },
-    beforeDestroy() {
+    beforeMount() {
         this.timer && clearTimeout(this.timer);
         this.mymap && this.mymap.remove();
     }

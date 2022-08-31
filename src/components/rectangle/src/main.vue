@@ -7,7 +7,8 @@
 <script>
     import Options from '../../../mixins/Options.js';
     // import { rectangle, extend } from 'leaflet';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const rectangle = L.rectangle;
     const extend = L.extend;
 

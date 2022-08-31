@@ -7,7 +7,8 @@
 <script>
     import Options from '../../../mixins/Options.js';
     // import { imageOverlay, extend } from 'leaflet';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const imageOverlay = L.imageOverlay;
     const extend = L.extend;
 

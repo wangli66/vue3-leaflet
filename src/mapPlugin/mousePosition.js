@@ -1,4 +1,5 @@
-import * as L from 'leaflet';
+// import * as L from 'leaflet';
+import L from 'leaflet';
 
 L.Control.MousePosition = L.Control.extend({
     options: {

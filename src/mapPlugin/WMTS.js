@@ -1,7 +1,6 @@
-import * as L from 'leaflet';
-L = L.default || L;
-const TileLayer = L.TileLayer;
-console.log('---L.TileLayer---,',L.TileLayer);
+// import * as L from 'leaflet';
+import L from 'leaflet';
+const TileLayer = (L && L.TileLayer)?L.TileLayer:window.L.TileLayer;
 TileLayer.WMTS = TileLayer.extend({
     defaultWmtsParams: {
         service: 'WMTS',
@@ -53,7 +52,7 @@ TileLayer.WMTS = TileLayer.extend({
         nwPoint.y -= 1;
         var sePoint = nwPoint.add(new L.Point(tileSize, tileSize));
         var offset=this.wmtsParams.zoomOffset||0
-        var zoom = this._tileZoom+zoomOffset;
+        var zoom = this._tileZoom+offset;
         var nw = this._crs.project(this._map.unproject(nwPoint, zoom));
         var se = this._crs.project(this._map.unproject(sePoint, zoom));
         var tilewidth = se.x - nw.x;

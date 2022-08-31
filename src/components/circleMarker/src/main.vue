@@ -7,7 +7,8 @@
 <script>
     import Options from '../../../mixins/Options.js';
     // import { circleMarker, extend } from 'leaflet';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const circleMarker = L.circleMarker;
     const extend = L.extend;
 

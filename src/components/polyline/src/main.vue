@@ -7,7 +7,8 @@
 <script>
     import Options from '../../../mixins/Options.js';
     // import { polyline, extend } from 'leaflet';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const polyline = L.polyline;
     const extend = L.extend;
 

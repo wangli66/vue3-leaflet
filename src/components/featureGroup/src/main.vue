@@ -7,7 +7,8 @@
 <script>
     import Options from "../../../mixins/Options.js";
     // import { featureGroup, extend } from "leaflet";
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const featureGroup = L.featureGroup;
     const extend = L.extend;
 

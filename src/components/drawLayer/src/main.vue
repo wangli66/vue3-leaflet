@@ -15,7 +15,8 @@
     import drawMixin from '../../../mixins/drawMixin.js'
     // import { polyline, extend } from 'leaflet'
     import { geojsonToWKT } from '@terraformer/wkt'
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const polyline = L.polyline;
     const extend = L.extend;
 

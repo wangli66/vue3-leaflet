@@ -6,7 +6,8 @@
     import { propsBinder, methodsBinder,findRealParent } from '../../../utils/utils.js';
     import Options from '../../../mixins/Options.js';
     // import {DomEvent, tooltip, latLng, extend } from 'leaflet';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const DomEvent = L.DomEvent;
     const tooltip = L.tooltip;
     const latLng = L.latLng;
@@ -51,13 +52,13 @@
                 this.parentDom = parentDom;
                 this.self.setContent(this.content ||  this.$el);
                 parentDom.self.bindTooltip(this.self);
-               
+
                 // 继承当前leaflet对象的方法
                 DomEvent.on(this.self, this.$listeners);
 
                 // 响应式参数处理
                 propsBinder(this, this.self, this.$options.props);
-                propsBinder(this, this.self, {}, this.options);                
+                propsBinder(this, this.self, {}, this.options);
 
                 this.$nextTick(() => {
                     this.ready = true;
@@ -70,14 +71,14 @@
             initLeafletObject() {
                 this.selfOptions = extend(this.originOptions, this.options, this.$attrs);
                 this.self = tooltip(this.selfOptions,this.layer);
-                
+
                 this.initFunction();
             },
         },
         mounted() {
             this.initLeafletObject();
         },
-        beforeDestroy() {
+        beforeMount() {
             if (this.parentDom) {
                 if (this.parentDom.unbindTooltip) {
                     this.parentDom.unbindTooltip();

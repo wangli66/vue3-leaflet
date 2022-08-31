@@ -1,7 +1,7 @@
 import { propsBinder, methodsBinder, addToParentElement } from '../utils/utils.js';
 // import { DomEvent } from 'leaflet';
 import * as L from 'leaflet';
-const DomEvent = L.DomEvent;
+const DomEvent = (L.default || L).DomEvent;
 
 // from 'leaflet';
 
@@ -47,8 +47,19 @@ export default {
             // 当前leaflet对象加入父级或根map中
             addToParentElement(this, this.lMap);
 
+			let _attrs={}, _listeners={};
+			let attrsObj = this.$attrs;
+			Object.keys(attrsObj).forEach(k=>{
+				if(k && k.startsWith('on')){
+					let newK = k.substring(2)
+					newK = newK && newK.toLowerCase()
+					_listeners[newK] = attrsObj[k];
+				}else{
+					_attrs[k] = attrsObj[k];
+				}
+			});
             // 继承当前leaflet对象的方法
-            DomEvent.on(this.self, this.$listeners);
+            DomEvent.on(this.self, _listeners);
 
             // 响应式参数处理
             propsBinder(this, this.self, this.$options.props);
@@ -63,7 +74,7 @@ export default {
             });
         }
     },
-    beforeDestroy() {
+    beforeMount() {
         this.self && this.self.remove && this.self.remove();
     }
 };

@@ -6,7 +6,8 @@
     import { propsBinder, methodsBinder,findRealParent } from '../../../utils/utils.js';
     import Options from '../../../mixins/Options.js';
     // import {DomEvent, popup, extend } from 'leaflet';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const DomEvent = L.DomEvent;
     const popup = L.popup;
     const extend = L.extend;
@@ -76,7 +77,7 @@
 
                 // 响应式参数处理
                 propsBinder(this, this.self, this.$options.props);
-                propsBinder(this, this.self, {}, this.options);                
+                propsBinder(this, this.self, {}, this.options);
 
                 this.$nextTick(() => {
                     this.ready = true;
@@ -102,7 +103,7 @@
         mounted() {
             this.initLeafletObject();
         },
-         beforeDestroy() {
+		beforeMount() {
             if (this.parentDom) {
                 if (this.parentDom.unbindPopup) {
                     this.parentDom.unbindPopup();

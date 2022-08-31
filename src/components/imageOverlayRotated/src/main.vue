@@ -8,10 +8,11 @@
     import Options from '../../../mixins/Options.js';
     // import { extend ,latLng} from 'leaflet';
     import { ImageOverlayRotated } from '../../../mapPlugin/Leaflet.ImageOverlay.Rotated.js';
-    import * as L from 'leaflet';
+    // import * as L from 'leaflet';
+	import L from 'leaflet';
     const latLng = L.latLng;
     const extend = L.extend;
-    
+
 
     export default {
         name: 'LImageOverlayRotated',
@@ -48,7 +49,7 @@
                 }
 
                 this.self = ImageOverlayRotated(this.url, topleft, topright, bottomleft, this.selfOptions)
-                
+
                 this.initFunction();
             },
         },
