@@ -56,7 +56,7 @@ export default {
         this.options = L.extend({}, this.originOptions, this.mapOptions, this.$attrs);
         this.ensureMapDom();
     },
-    beforeMount() {
+    beforeUnmount() {
         this.timer && clearTimeout(this.timer);
         this.mymap && this.mymap.remove();
     }

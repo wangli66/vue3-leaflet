@@ -149,7 +149,7 @@
         mounted() {
             this.ensureMapDom();
         },
-        // beforeMount() {
+        // beforeUnmount() {
         //     this.map && this.map.remove();
         // },
     }

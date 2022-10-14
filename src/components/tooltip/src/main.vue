@@ -78,7 +78,7 @@
         mounted() {
             this.initLeafletObject();
         },
-        beforeMount() {
+        beforeUnmount() {
             if (this.parentDom) {
                 if (this.parentDom.unbindTooltip) {
                     this.parentDom.unbindTooltip();

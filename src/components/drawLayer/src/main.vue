@@ -59,6 +59,8 @@
             drawOptions: {
                 type: [Array, Object],
                 default: () => [
+                    'zoomIn',
+                    'zoomOut',
                     'marker',
                     'circleMarker',
                     'rectangle',
@@ -105,6 +107,12 @@
                 // typeArr: ['rectangle', 'polygon', 'circle', 'polyline', 'delete'],
                 drawList: [],
                 originOptions: {
+                    zoomIn:{
+                        title:'放大'
+                    },
+                    zoomOut:{
+                        title:'缩小'
+                    },
                     marker: {
                         title: '标记',
                         // style: {},
@@ -227,7 +235,7 @@
                     return false;
                 }
                 let type = shapeInfo.type;
-                if(this.originOptions[type]){
+                if(!this.originOptions[type]){
                     console.error(`您传入的type属性${type}为不存在，请参数drawOptions的type类型取值重新传入`);
                     return false;
                 }
@@ -238,8 +246,17 @@
                 this.editType = ''
                 this.setEditable(false)
             },
+            zoomFn(type){
+                let zoom = this.mapObject.getZoom();
+                zoom = type==='zoomIn'?zoom+1:zoom-1;
+				this.mapObject.setZoom(zoom);
+            },
             handleDrawShape(shapeInfo) {
                 let { type } = shapeInfo
+                if(['zoomIn','zoomOut'].includes(type)){
+                    this.zoomFn(type);
+                    return false;
+                }
                 this.initDrawShapeStatus(false)
                 if (type == 'delete') {
                     this.clearLayers()
@@ -418,6 +435,12 @@
         border-bottom: none;
     }
 
+    .map-draw-wrap .map-draw-item.zoomIn {
+        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjYyMzQ2MzExODI0IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjU5ODEiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik00NjkuMzMzMzMzIDQ2OS4zMzMzMzNWMTcwLjY2NjY2N2g4NS4zMzMzMzR2Mjk4LjY2NjY2NmgyOTguNjY2NjY2djg1LjMzMzMzNGgtMjk4LjY2NjY2NnYyOTguNjY2NjY2aC04NS4zMzMzMzR2LTI5OC42NjY2NjZIMTcwLjY2NjY2N3YtODUuMzMzMzM0aDI5OC42NjY2NjZ6IiBmaWxsPSIjMDAwMDAwIiBwLWlkPSI1OTgyIiBkYXRhLXNwbS1hbmNob3ItaWQ9ImEzMTN4Ljc3ODEwNjkuMC5pNyIgY2xhc3M9InNlbGVjdGVkIj48L3BhdGg+PC9zdmc+);
+    }
+    .map-draw-wrap .map-draw-item.zoomOut {
+        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjYyMzQ2NzE3MzQ0IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjEzMzYiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik0xMjMuNjM4NTE4OSA0NjMuNDU0ODE0NDNoNzc2LjcyMjk2MjJ2OTcuMDkwMzcxMTRIMTIzLjYzODUxODl6IiBmaWxsPSIjMDAwMDAwIiBwLWlkPSIxMzM3Ij48L3BhdGg+PC9zdmc+);
+    }
     .map-draw-wrap .map-draw-item.polyline {
         background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJNOS4xNjUgMTkuNDJsOS4yNTYtOS4yNTVhMy41IDMuNSAwIDExMS40MTQgMS40MTRsLTkuMjU2IDkuMjU2YTMuNSAzLjUgMCAxMS0xLjQxNC0xLjQxNHpNMjEuNSAxMGExLjUgMS41IDAgMTAwLTMgMS41IDEuNSAwIDAwMCAzem0tMTQgMTRhMS41IDEuNSAwIDEwMC0zIDEuNSAxLjUgMCAwMDAgM3oiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMyAtMykiPjxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmIj48dXNlIHhsaW5rOmhyZWY9IiNhIi8+PC9tYXNrPjx1c2UgZmlsbD0iIzVCNUI1QiIgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYSIvPjxnIGZpbGw9IiM1QjVCNUIiIG1hc2s9InVybCgjYikiPjxwYXRoIGQ9Ik0wIDBoMzB2MzBIMHoiLz48L2c+PC9nPjwvc3ZnPg==);
     }

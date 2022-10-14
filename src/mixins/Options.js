@@ -74,7 +74,7 @@ export default {
             });
         }
     },
-    beforeMount() {
+    beforeUnmount() {
         this.self && this.self.remove && this.self.remove();
     }
 };

@@ -25,6 +25,7 @@
                 default: () => ({})
             },
             isFitBounds: {
+				custom:true,
                 type: Boolean,
                 default: false
             },
@@ -42,6 +43,11 @@
                     this.isFitBounds && this.lMap.self.fitBounds(this.self.getBounds());
                 });
             },
+			setIsFitBounds(){
+				this.$nextTick(() => {
+                    this.isFitBounds && this.lMap.self.fitBounds(this.self.getBounds());
+                });
+			},
             addData(data) {
                 this.self.addData(data);
             },

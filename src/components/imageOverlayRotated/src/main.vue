@@ -26,7 +26,14 @@
             },
             bounds: {
                 type: [Object, Array]
-            }
+            },
+			defaultZIndex:{
+				type: Number
+			},
+			topLayer: {
+				custom: true,
+				type: Boolean
+			}
         },
         data() {
             return {
@@ -34,6 +41,12 @@
             };
         },
         methods: {
+			setTopLayer(){
+				this.$nextTick(()=>{
+					let defaultZIndex = this.defaultZIndex || 9999;
+					this.topLayer && this.self.setZIndex(defaultZIndex);
+				});
+			},
             initLeafletObject() {
                 this.selfOptions = extend(this.originOptions, this.options, this.$attrs);
                 let bounds = this.bounds;
@@ -49,8 +62,8 @@
                 }
 
                 this.self = ImageOverlayRotated(this.url, topleft, topright, bottomleft, this.selfOptions)
-
                 this.initFunction();
+				this.setTopLayer();
             },
         },
         mounted() {

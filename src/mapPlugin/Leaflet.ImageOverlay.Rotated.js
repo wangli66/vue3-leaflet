@@ -20,7 +20,8 @@
  * ```
  *
  */
-import * as L from 'leaflet';
+// import * as L from 'leaflet';
+import L from 'leaflet';
 const ImageOverlay = (L && L.ImageOverlay)?L.ImageOverlay:window.L.ImageOverlay;
 
 ImageOverlay.Rotated = ImageOverlay.extend({

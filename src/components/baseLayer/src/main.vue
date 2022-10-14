@@ -198,6 +198,7 @@
         mounted() {
             // this.initLeafletObject();
             // this.getLayerComp();
+			this.self = this.layerComp.self;
         },
     }
 </script>

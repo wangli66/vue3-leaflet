@@ -13,6 +13,7 @@
 	import L from 'leaflet';
     const marker = L.marker;
     const icon = L.icon;
+    const divIcon = L.divIcon;
     const extend = L.extend;
 
     export default {
@@ -21,10 +22,25 @@
         mixins: [Options],
         inheritAttrs: false,
         props: {
-            latlng: {
+            latLng: {
                 type: [Array, Object],
                 default: null,
-            }
+            },
+            latlng: {
+				custom:true,
+                type: [Array, Object],
+                default: null,
+            },
+			iconOptions:{
+				custom:true,
+				type: Object,
+                default: null,
+			},
+			divIconOptions:{
+				custom:true,
+				type: Object,
+                default: null,
+			}
         },
         data() {
             return {
@@ -32,16 +48,24 @@
             };
         },
         methods: {
+			setLatlng(latlng){
+				this.self.setLatLng(latlng);
+			},
             initLeafletObject() {
                 this.selfOptions = extend(this.originOptions, this.options, this.$attrs);
-                if(this.selfOptions.icon==undefined){
-                    this.selfOptions.icon =  icon({
+				if(this.iconOptions){
+					this.selfOptions.icon =  icon(this.iconOptions);
+				}else if(this.divIconOptions){
+					this.selfOptions.icon =  divIcon(this.divIconOptions);
+				}else{
+					this.selfOptions.icon =  icon({
                         iconUrl: iconUrl,
                         shadowUrl: iconShadow,
                         iconAnchor: [12, 38],
                     });
-                }
-                this.self = marker(this.latlng, this.selfOptions);
+				}
+				let latlng = this.latLng || this.latlng
+                this.self = marker(latlng, this.selfOptions);
 
                 this.initFunction();
             },

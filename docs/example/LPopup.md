@@ -12,12 +12,13 @@ title: LPopup
 
 ```html
 <template>
-  <l-map style="height:400px;" :center="[30.724719,114.169496]" :zoom="12">
+ <div @click="test">test</div>
+  <l-map @click="test2" style="height:400px;" :center="[30.724719,114.169496]" :zoom="12">
     <l-tile-layer :url="tileUrl" :options="options"> </l-tile-layer>
     <l-marker :latlng="[30.724719,114.169496]">
       <l-popup>hello!<br />这是一个slot的写法</l-popup>
     </l-marker>
-    <l-popup :latlng="[30.724719,114.209496]" :content="content"></l-popup>
+    <l-popup :latlng="latlng" :content="content"></l-popup>
   </l-map>
 </template>
 <script>
@@ -25,9 +26,20 @@ title: LPopup
     data: () => ({
       tileUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}",
       options: { foo: "bar" },
+	  latlng:[30.724719,114.209496],
       content:
         '<p style="color:red;">Hello world!<br />This is a nice popup.</p>',
     }),
+	methods:{
+		test(){
+			this.latlng =[30.724719,114.169496]
+		},
+		test2(e){
+			debugger
+			let latlng = e.latlng;
+			this.latlng =[latlng.lat,latlng.lng]
+		}
+	}
   };
 </script>
 ```

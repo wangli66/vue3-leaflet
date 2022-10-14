@@ -40,7 +40,9 @@
         data() {
             return {
                 originOptions: {},
-                parentDom: null
+                parentDom: null,
+				_attrs:{},
+				_listeners:{}
             };
         },
         methods: {
@@ -51,7 +53,10 @@
             },
             setLatlng(newVal){
                 if (this.self && newVal !== null && newVal !== undefined) {
+					debugger
                     this.self.setLatLng(newVal);
+					// this.self.openPopup(newVal);
+					this.self.togglePopup();
                 }
             },
             getParentDom(){
@@ -67,13 +72,14 @@
 
                 // 当前leaflet对象加入父级或根map中
                 this.parentDom = this.getParentDom();
+				// debugger
                 if(this.parentDom.bindPopup){
                     this.parentDom.bindPopup(this.self);
                 }else{
                     this.self.addTo(this.lMap.self)
                 }
                 // 继承当前leaflet对象的方法
-                DomEvent.on(this.self, this.$listeners);
+                DomEvent.on(this.self, this._listeners);
 
                 // 响应式参数处理
                 propsBinder(this, this.self, this.$options.props);
@@ -88,13 +94,27 @@
                 });
             },
             initLeafletObject() {
-                this.selfOptions = extend(this.originOptions, this.options, this.$attrs);
+				let _attrs={}, _listeners={};
+				let attrsObj = this.$attrs;
+				Object.keys(attrsObj).forEach(k=>{
+					if(k && k.startsWith('on')){
+						let newK = k.substring(2)
+						newK = newK && newK.toLowerCase()
+						_listeners[newK] = attrsObj[k];
+					}else{
+						_attrs[k] = attrsObj[k];
+					}
+				});
+				this._attrs = _attrs;
+				this._listeners = _listeners;
+
+                this.selfOptions = extend(this.originOptions, this.options, _attrs);
                 this.self = popup(this.selfOptions,this.layer);
                 // .setLatLng(this.latlng).setContent(this.content);
-                if (this.latlng !== undefined) {
+                if (this.latlng !== undefined && this.latlng !== null) {
                     this.self.setLatLng(this.latlng);
                 }
-                this.self.setContent(this.content || this.$el);
+				this.self.setContent(this.content || this.$el);
 
                 this.initFunction();
             },
@@ -103,7 +123,7 @@
         mounted() {
             this.initLeafletObject();
         },
-		beforeMount() {
+		beforeUnmount() {
             if (this.parentDom) {
                 if (this.parentDom.unbindPopup) {
                     this.parentDom.unbindPopup();
