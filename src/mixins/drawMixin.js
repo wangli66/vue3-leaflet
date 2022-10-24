@@ -344,12 +344,15 @@ export default {
             var measure = 0;
             let other = '';
             let originMeasure; //计算出来的原始尺寸
-			console.error('测量功能暂时不可用');
+			// console.error('测量功能暂时不可用');
 			// return false;
             if (type == 'length') {
                 let bounds = this.coordinateArr;
                 center = bounds[bounds.length - 1];
-                measure = turf.length(geojson, { units: 'miles' });
+				let coordinates = geojson.geometry.coordinates;
+				let line = turf.lineString(coordinates);
+                measure = turf.length(line, { units: 'kilometers' });
+				measure = measure*1000;
                 originMeasure = measure;
                 measure = '长度：' + measure + ' m';
                 other = 'tips-top';

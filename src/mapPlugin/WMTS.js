@@ -51,7 +51,7 @@ TileLayer.WMTS = TileLayer.extend({
         nwPoint.x += 1;
         nwPoint.y -= 1;
         var sePoint = nwPoint.add(new L.Point(tileSize, tileSize));
-        var offset=this.wmtsParams.zoomOffset||0
+        var offset=this.wmtsParams.offset||0
         var zoom = this._tileZoom+offset;
         var nw = this._crs.project(this._map.unproject(nwPoint, zoom));
         var se = this._crs.project(this._map.unproject(sePoint, zoom));
@@ -87,17 +87,18 @@ TileLayer.WMTS = TileLayer.extend({
     },
     getDefaultMatrix: function() {
         /**
-         * the matrix3857 represents the projection
+         * the matrix4326 represents the projection
          * for in the IGN WMTS for the google coordinates.
+		 * 3857的matrix在wmts的组件中处理  matrix3857
          */
-        var matrixIds3857 = new Array(22);
+        var matrixIds4326 = new Array(22);
         for (var i = 0; i < 22; i++) {
-            matrixIds3857[i] = {
+            matrixIds4326[i] = {
                 identifier: 1 + i,
                 topLeftCorner: new L.LatLng(90, -180)
             };
         }
-        return matrixIds3857;
+        return matrixIds4326;
     }
 });
 export function WMTS(url, options) {

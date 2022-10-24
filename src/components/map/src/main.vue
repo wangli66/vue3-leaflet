@@ -8,6 +8,7 @@
     import Options from '../../../mixins/Options.js';
     import { propsBinder, methodsBinder } from '../../../utils/utils.js';
     import { wktToGeoJSON, geojsonToWKT } from "@terraformer/wkt"
+	import {customCrs} from './customCrs.js';
     // import { CRS, DomEvent, map, extend, latLngBounds, latLng } from 'leaflet';
     // import * as L from 'leaflet';
     import L from 'leaflet';
@@ -51,7 +52,17 @@
                 type: [Object, String],
                 validator: function(value) {
                     if (typeof value == 'string') {
-                        return CRS[value]
+                        let crsObj = CRS[value];
+                        if(crsObj){
+                            return crsObj;
+                        }else {
+                            crsObj = customCrs[value];
+                            if(typeof crsObj=='function'){
+                                return crsObj();
+                            }else{
+                                console.error('您输入的crs字符串不支持，请自定义crs规则传入');
+                            }
+                        }
                     } else {
                         return value;
                     }
@@ -113,7 +124,7 @@
             // 初始化map
             initMap() {
                 let crs = this.crs;
-                let crsObj = crs ? { crs: (typeof crs == 'string' ? CRS[crs] : crs) } : {};
+                let crsObj = crs ? { crs: typeof crs == "string" ? CRS[crs] || customCrs[crs]() : crs } : {};
                 let _attrs={}, _listeners={};
 				let attrsObj = this.$attrs;
 				Object.keys(attrsObj).forEach(k=>{

@@ -25,6 +25,16 @@
 <script>
     import Options from '../../../mixins/Options.js'
 
+	import tileLayer from '../../tileLayer/src/main.vue';
+	import wmsTileLayer from '../../wmsTileLayer/src/main.vue';
+	import wmtsTileLayer from '../../wmtsTileLayer/src/main.vue';
+	import videoOverlay from '../../videoOverlay/src/main.vue';
+	import imageOverlay from '../../imageOverlay/src/main.vue';
+
+	const layerComponentObj= {
+		tileLayer,wmsTileLayer,wmtsTileLayer,videoOverlay,imageOverlay
+	};
+
     export default {
         name: 'LBaseLayer',
         inject: ['lMap'],
@@ -56,7 +66,7 @@
                 default () {
                     return []
                     // {
-                    //     nameClass: 'image',  //瓦片显示出来的名称
+                    //     nameClass: 'image',  //瓦片显示出来的样式名称，加载的底图图片是什么样的
                     //     name: '影像',  //影像显示的名称
                     //     type: '',  //服务类型，是wms、wmts、一般瓦片(默认)等
                     //     visible: true,//初始化时是否默认展示，若不设置，默认展示第一个
@@ -120,6 +130,27 @@
             },
         },
         methods: {
+			// 改变显示哪一个底图
+			/**
+			 * 在调用组件时，定制化切换按钮图像时，可调用改方法
+			 * data: object,配置项内内容，一定要包含type属性，即底图服务类型，如{type:wmts}
+			 * index: 第几个配置项，非必传，主要是节约资源，禁止不必要的渲染、切换
+			 */
+			changeBaseLayer(data, index){
+				if(index!=undefined && tIndex === this.visibleIndex){
+					return false;
+				}
+				let lastType = this.serviceType
+                this.visibleIndex = tIndex
+                if (type.type != this.serviceType) {
+                    this.getLayerComp()
+                }
+                this.dealOptions()
+                this.$nextTick(() => {
+                    this.randomNum = Math.random()
+                    this.$forceUpdate()
+                })
+			},
             handleChangeType(type, tIndex) {
                 if (tIndex === this.visibleIndex) return false
                 let lastType = this.serviceType
@@ -181,7 +212,9 @@
                 // console.log('--serviceType--', serviceType);
 
                 if (serviceTypeList.includes(serviceType)) {
-                    this.layerComp = require(`../../${serviceType}`).default
+                    // this.layerComp = require(`../../${serviceType}`).default
+                    // this.layerComp = () => import(`../../${serviceType}`)
+					this.layerComp = layerComponentObj[serviceType];
                 } else {
                     console.error(
                         `该组件不支持您传递的"${serviceType}"服务类型,请检查\n提示：该组件支持的服务类型有:${serviceTypeList}`
