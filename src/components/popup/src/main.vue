@@ -53,7 +53,7 @@
             },
             setLatlng(newVal){
                 if (this.self && newVal !== null && newVal !== undefined) {
-					debugger
+					// debugger
                     this.self.setLatLng(newVal);
 					// this.self.openPopup(newVal);
 					this.self.togglePopup();
