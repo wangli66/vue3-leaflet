@@ -241,7 +241,7 @@ export default {
 			if (serviceTypeList.includes(serviceType)) {
 				// this.layerComp = require(`../../${serviceType}`).default
 				// this.layerComp = () => import(`../../${serviceType}`)
-				this.layerComp = layerComponentObj[serviceType];
+				this.layerComp = shallowRef(layerComponentObj[serviceType]);
 			} else {
 				console.error(
 					`该组件不支持您传递的"${serviceType}"服务类型,请检查\n提示：该组件支持的服务类型有:${serviceTypeList}`

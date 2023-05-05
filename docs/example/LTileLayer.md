@@ -8,17 +8,24 @@ title: LTileLayer
 
 ```html
 <template>
-  <l-map style="height:400px;">
-    <l-tile-layer :url="url" :options="options"> </l-tile-layer>
-  </l-map>
+	<l-map style="height:400px;">
+		<l-tile-layer :url="url" :options="options"> </l-tile-layer>
+		<l-tile-layer
+			:url="'https://www.geosceneonline.cn/server/rest/services/Hosted/%E6%96%B0%E5%B9%BF%E4%B8%9C%E5%85%A8%E7%9C%81/VectorTileServer/tile/{z}/{y}/{x}.pbf'"
+			:vectorGridType="'protobuf'"
+			:options="{ tileSize: 512, zIndex: 999, zoomOffset: -1 }"
+		>
+		</l-tile-layer>
+	</l-map>
 </template>
+
 <script>
-  export default {
-    data: () => ({
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}",
-      options: { foo: "bar" },
-    }),
-  };
+	export default {
+		data: () => ({
+			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			options: { foo: "bar" },
+		}),
+	};
 </script>
 ```
 
