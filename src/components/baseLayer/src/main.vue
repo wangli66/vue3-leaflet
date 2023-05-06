@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import {shallowRef} from 'vue'
 import Options from "../../../mixins/Options.js";
 
 import tileLayer from "../../tileLayer/src/main.vue";

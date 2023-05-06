@@ -4,12 +4,12 @@ title: LBaseLayer
 
 ## 介绍
 
-- 组件说明和产生原因：
-  - 该组件是后面若干瓦片底图组件的集合体，组件的类型和后续的瓦片底图组件一一相对应
-  - 解决问题的情况：项目中多处使用到地图组件，在功能不断开发过程中，频繁改变瓦片服务类型；
-  - 建议：将瓦片服务配置成全局的 mixins 或全局变量，这样，一旦项目中的瓦片服务类型发生改变，只用改全局配置即可
-- lBaseLayer 组件，作为底图加载组件，支持的图层类型有 tileLayer(默认),wmsTileLayer,wmtsTileLayer,imageOverlay,videoOverlay
-- layersOptions 的标准格式为
+-   组件说明和产生原因：
+    -   该组件是后面若干瓦片底图组件的集合体，组件的类型和后续的瓦片底图组件一一相对应
+    -   解决问题的情况：项目中多处使用到地图组件，在功能不断开发过程中，频繁改变瓦片服务类型；
+    -   建议：将瓦片服务配置成全局的 mixins 或全局变量，这样，一旦项目中的瓦片服务类型发生改变，只用改全局配置即可
+-   lBaseLayer 组件，作为底图加载组件，支持的图层类型有 tileLayer(默认),wmsTileLayer,wmtsTileLayer,imageOverlay,videoOverlay
+-   layersOptions 的标准格式为
 
 ```js
 layersOptions: {
@@ -29,7 +29,7 @@ layersOptions: {
 
 ## 基础用法
 
-- 默认的底图类型是 tileLayer
+-   默认的底图类型是 tileLayer
 
 ::: demo
 
@@ -44,7 +44,7 @@ layersOptions: {
     data: () => ({
       layersOptions: {
         config: {
-          url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}",
+          url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
           options: { foo: "bar" },
         },
       },
@@ -94,7 +94,7 @@ layersOptions: {
 
 ## 加载 wmtsTileLayer 底图
 
-- 该示例的 tk 用在天地图上申请的个人 tk，若底图加载不出来，可能是由于当天底图加载次数过多，使用时请自行前往天地图申请 tk 使用
+-   该示例的 tk 用在天地图上申请的个人 tk，若底图加载不出来，可能是由于当天底图加载次数过多，使用时请自行前往天地图申请 tk 使用
 
 ::: demo
 
@@ -211,13 +211,13 @@ layersOptions: {
 
 ## 加载多个底图
 
-- 加载的多个底图，请注意 CRS.EPSG\*坐标系要相同
-- 本例以天地图的瓦片为例
-- 右侧的地图卡片，组件支持的 nameClass 以下几种，nameClass 和展示名字的对应关系如下：
-  vector: '矢量',
-  terrain: '地形',
-  image: '影像',
-  earth: '地球'
+-   加载的多个底图，请注意 CRS.EPSG\*坐标系要相同
+-   本例以天地图的瓦片为例
+-   右侧的地图卡片，组件支持的 nameClass 以下几种，nameClass 和展示名字的对应关系如下：
+    vector: '矢量',
+    terrain: '地形',
+    image: '影像',
+    earth: '地球'
 
 ::: demo 1、加载多个瓦片时，layersOptions 为数组，2、若一个地图中需要包含底图、坐标等，可将 config 配置成数组，3、若需自定义展示名称，可在 name 中配置，如下示例，不配置的 name，展示名称管理如说明一致
 
@@ -322,19 +322,19 @@ layersOptions: {
 
 ## 自定义底图卡片的位置和显示名
 
-- 注意事项参考加载加载多个底图瓦片
-- dToB 设置地图卡片到边框的位置
-  - 默认为:'20px', 表示 x 轴、y 轴方向上的距离边框都是 20px
-  - 若想设置 x 轴、y 轴方向上到边框的距离不一致，可设为 dToB:'20px 40px'; //x 轴距离边框 20px，y 轴距离边框 40px
-- position 卡片放置的位置
-  - 默认为:'topright',表示卡片在地图的右上角
-  - 可选择值有：'topleft', 'topright', 'bottomleft', 'bottomright'
-- nameClass 可自定义，若用组件提供的卡片项的图片，请在'vector','terrain','image','earth'中选择一个
-  - name 可自定义，若不自定义，由组件提供 nameClass 决定
-    - vector: '矢量',
-    - terrain: '地形',
-    - image: '影像',
-    - earth: '地球'
+-   注意事项参考加载加载多个底图瓦片
+-   dToB 设置地图卡片到边框的位置
+    -   默认为:'20px', 表示 x 轴、y 轴方向上的距离边框都是 20px
+    -   若想设置 x 轴、y 轴方向上到边框的距离不一致，可设为 dToB:'20px 40px'; //x 轴距离边框 20px，y 轴距离边框 40px
+-   position 卡片放置的位置
+    -   默认为:'topright',表示卡片在地图的右上角
+    -   可选择值有：'topleft', 'topright', 'bottomleft', 'bottomright'
+-   nameClass 可自定义，若用组件提供的卡片项的图片，请在'vector','terrain','image','earth'中选择一个
+    -   name 可自定义，若不自定义，由组件提供 nameClass 决定
+        -   vector: '矢量',
+        -   terrain: '地形',
+        -   image: '影像',
+        -   earth: '地球'
 
 ::: demo 1、第一项配置 nameClass: "customClass",为自定义的 class 类名，在组件提供的四种背景图不满足需求的情况下，自定义；
 

@@ -1,6 +1,6 @@
 {
   "name": "vue3-leaflet",
-  "version": "1.0.44",
+  "version": "1.0.45",
   "description": "基于leaflet的vue3地图组件",
   "main": "src/index.js",
   "scripts": {
