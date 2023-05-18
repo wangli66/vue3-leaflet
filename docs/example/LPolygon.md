@@ -8,28 +8,28 @@ title: LPolygon
 
 ```html
 <template>
-  <l-map style="height:400px;">
-    <l-tile-layer
-      :url="'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}'"
-      :options="{ foo:'bar'}"
-    >
-    </l-tile-layer>
-    <l-polygon :latlngs="latlngs" :options="options"></l-polygon>
-  </l-map>
+	<l-map style="height:400px;">
+		<l-tile-layer
+			:url="'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'"
+			:options="{ foo:'bar'}"
+		>
+		</l-tile-layer>
+		<l-polygon :latlngs="latlngs" :options="options"></l-polygon>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      latlngs: [
-        [38.57393751557594, 95.61808317250322],
-        [38.57393751557594, 120.12951653254693],
-        [26.775039386999605, 117.6695877365569],
-        [29.563901551414443, 96.93590217035502],
-        [38.57393751557594, 95.61808317250322],
-      ],
-      options: { color: "red", fillColor: "blue" },
-    }),
-  };
+	export default {
+		data: () => ({
+			latlngs: [
+				[38.57393751557594, 95.61808317250322],
+				[38.57393751557594, 120.12951653254693],
+				[26.775039386999605, 117.6695877365569],
+				[29.563901551414443, 96.93590217035502],
+				[38.57393751557594, 95.61808317250322],
+			],
+			options: { color: "red", fillColor: "blue" },
+		}),
+	};
 </script>
 ```
 

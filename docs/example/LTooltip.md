@@ -13,22 +13,23 @@ title: LTooltip
 
 ```html
 <template>
-  <l-map style="height:400px;" :center="[30.724719,114.169496]" :zoom="12">
-    <l-tile-layer :url="tileUrl" :options="options"> </l-tile-layer>
-    <l-marker :latlng="[30.724719,114.169496]">
-      <l-tooltip>这是一个tooltip示例</l-tooltip>
-    </l-marker>
-  </l-map>
+	<l-map style="height:400px;" :center="[30.724719,114.169496]" :zoom="12">
+		<l-tile-layer :url="tileUrl" :options="options"> </l-tile-layer>
+		<l-marker :latlng="[30.724719,114.169496]">
+			<l-tooltip>这是一个tooltip示例</l-tooltip>
+		</l-marker>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      tileUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}",
-      options: { foo: "bar" },
-      content:
-        '<p style="color:red;">Hello world!<br />This is a nice popup.</p>',
-    }),
-  };
+	export default {
+		data: () => ({
+			tileUrl:
+				"https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			options: { foo: "bar" },
+			content:
+				'<p style="color:red;">Hello world!<br />This is a nice popup.</p>',
+		}),
+	};
 </script>
 ```
 

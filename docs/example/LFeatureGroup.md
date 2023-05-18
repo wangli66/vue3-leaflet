@@ -12,7 +12,7 @@ title: LFeatureGroup
 <template>
   <l-map style="height:400px;">
     <l-tile-layer
-      :url="'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}'"
+      :url="'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'"
       :options="{ foo:'bar'}"
     >
     </l-tile-layer>

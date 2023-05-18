@@ -4,51 +4,52 @@ title: LImageOverlayRotated
 
 ## 基础用法
 
-- 属性的 bounds 的值类型为 Array|Object
-  - 参数为 Array,是一个二维数组,顺序为：[topleft, topright, bottomleft]
-  - 参数为 Object,{topleft:XXX, topright:XXX, bottomleft:XXX}
-  - topleft, topright, bottomleft 三个参数可为数组或对象
-    - 例如：数组可为：[39, 110]
-    - 例如：对象可为可为：{lat:39, lng:110} 或者 {lat:39, lon: 110}
+-   属性的 bounds 的值类型为 Array|Object
+    -   参数为 Array,是一个二维数组,顺序为：[topleft, topright, bottomleft]
+    -   参数为 Object,{topleft:XXX, topright:XXX, bottomleft:XXX}
+    -   topleft, topright, bottomleft 三个参数可为数组或对象
+        -   例如：数组可为：[39, 110]
+        -   例如：对象可为可为：{lat:39, lng:110} 或者 {lat:39, lon: 110}
 
 ::: demo
 
 ```html
 <template>
-  <l-map style="height:400px;" :center="[30.724719,114.169496]" :zoom="12">
-    <l-tile-layer :url="tileUrl" :options="options"> </l-tile-layer>
-    <l-image-overlay-rotated
-      :url="imgUrl"
-      :bounds="bounds"
-      :options="{opacity:0.9}"
-    ></l-image-overlay-rotated>
-  </l-map>
+	<l-map style="height:400px;" :center="[30.724719,114.169496]" :zoom="12">
+		<l-tile-layer :url="tileUrl" :options="options"> </l-tile-layer>
+		<l-image-overlay-rotated
+			:url="imgUrl"
+			:bounds="bounds"
+			:options="{opacity:0.9}"
+		></l-image-overlay-rotated>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      tileUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}",
-      options: { foo: "bar" },
-      imgUrl: "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
-      //   bounds: [
-      //     [30.76878861937772, 114.13574865289849],
-      //     [30.74538274399332, 114.22120127924],
-      //     [30.70129535595603, 114.1117258262161],
-      //   ],
-      // 或者可为
-      //   bounds: [
-      //     { lat: 30.76878861937772, lng: 114.13574865289849 },
-      //     { lat: 30.74538274399332, lng: 114.22120127924 },
-      //     { lat: 30.70129535595603, lng: 114.1117258262161 },
-      //   ],
-      //  或者可为
-      bounds: {
-        topleft: [30.76878861937772, 114.13574865289849],
-        topright: [30.74538274399332, 114.22120127924],
-        bottomleft: [30.70129535595603, 114.1117258262161],
-      },
-    }),
-  };
+	export default {
+		data: () => ({
+			tileUrl:
+				"https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			options: { foo: "bar" },
+			imgUrl: "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+			//   bounds: [
+			//     [30.76878861937772, 114.13574865289849],
+			//     [30.74538274399332, 114.22120127924],
+			//     [30.70129535595603, 114.1117258262161],
+			//   ],
+			// 或者可为
+			//   bounds: [
+			//     { lat: 30.76878861937772, lng: 114.13574865289849 },
+			//     { lat: 30.74538274399332, lng: 114.22120127924 },
+			//     { lat: 30.70129535595603, lng: 114.1117258262161 },
+			//   ],
+			//  或者可为
+			bounds: {
+				topleft: [30.76878861937772, 114.13574865289849],
+				topright: [30.74538274399332, 114.22120127924],
+				bottomleft: [30.70129535595603, 114.1117258262161],
+			},
+		}),
+	};
 </script>
 ```
 
@@ -56,60 +57,61 @@ title: LImageOverlayRotated
 
 ## 改变三角位置
 
-- 使用方法：reposition(),参数和初始化时保持一致
+-   使用方法：reposition(),参数和初始化时保持一致
 
 ::: demo
 
 ```html
 <template>
-  <l-map style="height:400px;" :center="[30.724719,114.169496]" :zoom="12">
-    <l-tile-layer :url="tileUrl" :options="options"> </l-tile-layer>
-    <l-image-overlay-rotated
-      ref="rotated"
-      @ready="readyFn"
-      :url="imgUrl"
-      :bounds="bounds"
-      :options="{opacity:0.9}"
-    ></l-image-overlay-rotated>
-    <l-marker
-      ref="marker"
-      v-for="(item,index) in bounds"
-      :keys="index"
-      :latlng="item"
-      :options="{draggable: true}"
-    ></l-marker>
-  </l-map>
+	<l-map style="height:400px;" :center="[30.724719,114.169496]" :zoom="12">
+		<l-tile-layer :url="tileUrl" :options="options"> </l-tile-layer>
+		<l-image-overlay-rotated
+			ref="rotated"
+			@ready="readyFn"
+			:url="imgUrl"
+			:bounds="bounds"
+			:options="{opacity:0.9}"
+		></l-image-overlay-rotated>
+		<l-marker
+			ref="marker"
+			v-for="(item,index) in bounds"
+			:keys="index"
+			:latlng="item"
+			:options="{draggable: true}"
+		></l-marker>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      tileUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}",
-      options: { foo: "bar" },
-      imgUrl: "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
-      bounds: [
-        [30.76878861937772, 114.13574865289849],
-        [30.74538274399332, 114.22120127924],
-        [30.70129535595603, 114.1117258262161],
-      ],
-    }),
-    methods: {
-      readyFn() {
-        this.$nextTick(() => {
-          let refs = this.$refs.marker;
-          let rotated = this.$refs.rotated;
-          refs.forEach((ref) => {
-            ref.on("drag dragend", () => {
-              rotated.reposition(
-                refs[0].getLatLng(),
-                refs[1].getLatLng(),
-                refs[2].getLatLng()
-              );
-            });
-          });
-        });
-      },
-    },
-  };
+	export default {
+		data: () => ({
+			tileUrl:
+				"https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			options: { foo: "bar" },
+			imgUrl: "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+			bounds: [
+				[30.76878861937772, 114.13574865289849],
+				[30.74538274399332, 114.22120127924],
+				[30.70129535595603, 114.1117258262161],
+			],
+		}),
+		methods: {
+			readyFn() {
+				this.$nextTick(() => {
+					let refs = this.$refs.marker;
+					let rotated = this.$refs.rotated;
+					refs.forEach((ref) => {
+						ref.on("drag dragend", () => {
+							rotated.reposition(
+								refs[0].getLatLng(),
+								refs[1].getLatLng(),
+								refs[2].getLatLng()
+							);
+						});
+					});
+				});
+			},
+		},
+	};
 </script>
 ```
 

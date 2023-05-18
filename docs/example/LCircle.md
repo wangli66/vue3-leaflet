@@ -8,26 +8,26 @@ title: LCircle
 
 ```html
 <template>
-  <l-map style="height:400px;">
-    <l-tile-layer
-      :url="'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}'"
-      :options="{ foo:'bar'}"
-    >
-    </l-tile-layer>
-    <l-circle
-      :latlng="latlng"
-      :options="options"
-      :isFitBounds="true"
-    ></l-circle>
-  </l-map>
+	<l-map style="height:400px;">
+		<l-tile-layer
+			:url="'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'"
+			:options="{ foo:'bar'}"
+		>
+		</l-tile-layer>
+		<l-circle
+			:latlng="latlng"
+			:options="options"
+			:isFitBounds="true"
+		></l-circle>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      latlng: [38.57393751557594, 95.61808317250322],
-      options: { radius: 100000, color: "red", fillColor: "blue" },
-    }),
-  };
+	export default {
+		data: () => ({
+			latlng: [38.57393751557594, 95.61808317250322],
+			options: { radius: 100000, color: "red", fillColor: "blue" },
+		}),
+	};
 </script>
 ```
 
@@ -43,7 +43,7 @@ title: LCircle
 
 ### Options
 
-其他options选项，请查看Path类的
+其他 options 选项，请查看 Path 类的
 
 | 选项     | 类型     | 默认 | 描述                   |
 | :------- | :------- | :--- | :--------------------- |

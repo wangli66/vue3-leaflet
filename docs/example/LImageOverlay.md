@@ -8,23 +8,24 @@ title: LImageOverlay
 
 ```html
 <template>
-  <l-map style="height:400px;" :center="[30.724719,114.169496]" :zoom="12">
-    <l-tile-layer :url="tileUrl" :options="options"> </l-tile-layer>
-    <l-image-overlay :url="imgUrl" :bounds="bounds"></l-image-overlay>
-  </l-map>
+	<l-map style="height:400px;" :center="[30.724719,114.169496]" :zoom="12">
+		<l-tile-layer :url="tileUrl" :options="options"> </l-tile-layer>
+		<l-image-overlay :url="imgUrl" :bounds="bounds"></l-image-overlay>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      tileUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}",
-      options: { foo: "bar" },
-      imgUrl: "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
-      bounds: [
-        [30.712216, 114.22655],
-        [30.773941, 114.12544],
-      ],
-    }),
-  };
+	export default {
+		data: () => ({
+			tileUrl:
+				"https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			options: { foo: "bar" },
+			imgUrl: "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+			bounds: [
+				[30.712216, 114.22655],
+				[30.773941, 114.12544],
+			],
+		}),
+	};
 </script>
 ```
 

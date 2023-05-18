@@ -8,25 +8,25 @@ title: LRectangle
 
 ```html
 <template>
-  <l-map style="height:400px;">
-    <l-tile-layer
-      :url="'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}'"
-      :options="{ foo:'bar'}"
-    >
-    </l-tile-layer>
-    <l-rectangle :latlngs="latlngs" :options="options"></l-rectangle>
-  </l-map>
+	<l-map style="height:400px;">
+		<l-tile-layer
+			:url="'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'"
+			:options="{ foo:'bar'}"
+		>
+		</l-tile-layer>
+		<l-rectangle :latlngs="latlngs" :options="options"></l-rectangle>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      latlngs: [
-        [38.57393751557594, 95.61808317250322],
-        [26.775039386999605, 117.6695877365569],
-      ],
-      options: { color: "red", fillColor: "blue" },
-    }),
-  };
+	export default {
+		data: () => ({
+			latlngs: [
+				[38.57393751557594, 95.61808317250322],
+				[26.775039386999605, 117.6695877365569],
+			],
+			options: { color: "red", fillColor: "blue" },
+		}),
+	};
 </script>
 ```
 
