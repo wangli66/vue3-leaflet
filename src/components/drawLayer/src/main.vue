@@ -255,11 +255,13 @@
                 let { type } = shapeInfo
                 if(['zoomIn','zoomOut'].includes(type)){
                     this.zoomFn(type);
+					this.$emit('changeType', shapeInfo)
                     return false;
                 }
                 this.initDrawShapeStatus(false)
                 if (type == 'delete') {
                     this.clearLayers()
+					this.$emit('changeType', shapeInfo)
                     return false
                 }
                 if (!this.drawShapeMore) {
@@ -287,6 +289,7 @@
                 }
                 this.setEditable(false)
                 this.drawLayer && this.drawLayer.clearLayers()
+				this.$emit('clearLayers')
             },
             //得到绘制图层
             getDrawLayers(type) {
