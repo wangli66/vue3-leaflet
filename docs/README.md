@@ -5,23 +5,38 @@ title: 使用指南
 ## 安装
 
 可直接从下面链接中 clone 或下载到本地<br/>
-[github 地址](https://github.com/wangli66/vue-leaflet-more.git)
-https://github.com/wangli66/vue-leaflet-more.git
+[github 地址](https://github.com/wangli66/vue3-leaflet.git)
+https://github.com/wangli66/vue3-leaflet.git
 
-推荐：[gitee 地址](https://gitee.com/wangli66/vue-leaflet-more.git)
-https://gitee.com/wangli66/vue-leaflet-more.git
+推荐：[gitee 地址](https://gitee.com/wangli66/vue3-leaflet.git)
+https://gitee.com/wangli66/vue3-leaflet.git
+
+前言说明：由于 vite 支持 esm 的写法，本组件依赖的 leaflet 是 common 写法；故续安装插件@originjs/vite-plugin-commonjs；
+然后在 vite.config.js 的配置文件加入插件
+
+```js
+import { viteCommonjs } from "@originjs/vite-plugin-commonjs";
+export default defineConfig({
+	plugins: [viteCommonjs()],
+	resolve: {
+		alias: {
+			"@": fileURLToPath(new URL("./src", import.meta.url)),
+		},
+	},
+});
+```
 
 1、安装
 
 ```js
-    npm install vue-leaflet-more leaflet
+    npm install vue3-leaflet leaflet
 ```
 
 2、使用
 
 ```js
-import vueLeafletMore from "vue-leaflet-more";
-Vue.use(vueLeafletMore);
+import vue3Leaflet from "vue3-leaflet";
+Vue.use(vue3Leaflet);
 ```
 
 ## 本地运行查看说明文档

@@ -9,8 +9,13 @@ title: LMap
 ```html
 <template>
 	<l-map style="height:400px;">
-		<l-tile-layer
+		<!-- <l-tile-layer
 			:url="'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'"
+			:options="{foo:'bar'}"
+		>
+		</l-tile-layer> -->
+		<l-tile-layer
+			:url="'https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}'"
 			:options="{foo:'bar'}"
 		>
 		</l-tile-layer>
@@ -56,7 +61,7 @@ js: options={zoom:4}
 	<button @click="handleChange">放大</button>
 	<l-map style="height:400px;" :options="options">
 		<l-tile-layer
-			:url="'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'"
+			:url="'https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}'"
 			:options="{foo:'bar'}"
 		>
 		</l-tile-layer>
@@ -93,7 +98,7 @@ js: options={zoom:4}
 	<button @click="handleChange">放大</button>
 	<l-map style="height:400px;" ref="map" :useSelfMethods="true" :zoom="zoom">
 		<l-tile-layer
-			:url="'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'"
+			:url="'https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}'"
 			:options="{foo:'bar'}"
 		>
 		</l-tile-layer>

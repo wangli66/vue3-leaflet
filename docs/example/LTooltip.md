@@ -24,7 +24,7 @@ title: LTooltip
 	export default {
 		data: () => ({
 			tileUrl:
-				"https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+				"https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			content:
 				'<p style="color:red;">Hello world!<br />This is a nice popup.</p>',

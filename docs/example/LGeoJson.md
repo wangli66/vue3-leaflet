@@ -16,7 +16,7 @@ title: LGeoJson
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			geoJson: {
 				type: "Feature",
@@ -78,7 +78,7 @@ geojson 集合时，多个数据的不同渲染和时间支持
 	//   import L from "leaflet";
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			geoJson: {
 				type: "FeatureCollection",

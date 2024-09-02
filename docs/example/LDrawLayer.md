@@ -12,15 +12,20 @@ title: LDrawLayer
 <template>
 	<l-map style="height:400px;" :zoomControl="true">
 		<l-tile-layer :url="url" :options="options"> </l-tile-layer>
-		<l-draw-layer></l-draw-layer>
+		<l-draw-layer @finishDraw="finishDrawFn"></l-draw-layer>
 	</l-map>
 </template>
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
-			options: { foo: "bar" },
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
+			options: {},
 		}),
+		methods: {
+			finishDrawFn: (params) => {
+				console.log("params---", params);
+			},
+		},
 	};
 </script>
 ```
@@ -51,8 +56,8 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
-			options: { foo: "bar" },
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
+			options: {},
 			dToB: "10px 100px",
 			position: "topright",
 			mode: "vertical",
@@ -87,8 +92,8 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
-			options: { foo: "bar" },
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
+			options: {},
 		}),
 	};
 </script>
@@ -115,8 +120,8 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
-			options: { foo: "bar" },
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
+			options: {},
 			drawOptions: ["marker", "rectangle", "polygon", "delete"],
 		}),
 	};
@@ -143,8 +148,8 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
-			options: { foo: "bar" },
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
+			options: {},
 			drawOptions: [
 				{ type: "rectangle", title: "自定义title显示名" },
 				{ type: "polygon" },
@@ -175,7 +180,7 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			drawOptions: [
 				"rectangle",
@@ -209,7 +214,7 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			drawOptions: {
 				rectangle: {
@@ -242,7 +247,7 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 		}),
 	};
@@ -274,7 +279,7 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 		}),
 		methods: {
@@ -308,7 +313,7 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			drawOptions: [
 				"rectangle",
@@ -347,7 +352,7 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			commonStyle: {
 				color: "#E5D612",
@@ -392,7 +397,7 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			commonIconStyle: {
 				border: "1px solid red",
@@ -433,7 +438,7 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			drawOptions: [],
 		}),
@@ -479,7 +484,7 @@ title: LDrawLayer
 <script>
 	export default {
 		data: () => ({
-			url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+			url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			drawOptions: [
 				{

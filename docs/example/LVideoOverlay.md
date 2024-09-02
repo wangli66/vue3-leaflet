@@ -21,7 +21,7 @@ title: LVideoOverlay
 	export default {
 		data: () => ({
 			tileUrl:
-				"https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+				"https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			videoUrl: "https://www.mapbox.com/bites/00188/patricia_nasa.webm",
 			bounds: [

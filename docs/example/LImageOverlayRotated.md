@@ -28,7 +28,7 @@ title: LImageOverlayRotated
 	export default {
 		data: () => ({
 			tileUrl:
-				"https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+				"https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			imgUrl: "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
 			//   bounds: [
@@ -85,7 +85,7 @@ title: LImageOverlayRotated
 	export default {
 		data: () => ({
 			tileUrl:
-				"https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+				"https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
 			options: { foo: "bar" },
 			imgUrl: "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
 			bounds: [

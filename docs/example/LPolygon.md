@@ -10,7 +10,7 @@ title: LPolygon
 <template>
 	<l-map style="height:400px;">
 		<l-tile-layer
-			:url="'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'"
+			:url="'https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}'"
 			:options="{ foo:'bar'}"
 		>
 		</l-tile-layer>

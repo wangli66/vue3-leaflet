@@ -1,12 +1,34 @@
 # vue3-leaflet
+
 注意：此版本暂时为项目内部使用
+
 #### 介绍
 
 使用 leaflet 进行 vue 项目的开发
 
-demo 地址：http://wangli66.gitee.io/vue3-leaflet/
+github 预览 demo 地址：https://wangli66.github.io/vue-leaflet-more/
+demo 地址：http://wangli66.gitee.io/vue3-leaflet/（地址暂时无法访问）
+[gitee 地址](https://gitee.com/wangli66/vue3-leaflet)（地址暂时无法访问）
 
-推荐：[gitee 地址](https://gitee.com/wangli66/vue3-leaflet)
+前言说明：由于 vite 支持 esm 的写法，本组件依赖的 leaflet 是 common 写法；故续安装插件@originjs/vite-plugin-commonjs；
+
+```js
+npm install @originjs/vite-plugin-commonjs --save-dev
+```
+
+然后在 vite.config.js 的配置文件加入插件
+
+```js
+import { viteCommonjs } from "@originjs/vite-plugin-commonjs";
+export default defineConfig({
+	plugins: [viteCommonjs()],
+	resolve: {
+		alias: {
+			"@": fileURLToPath(new URL("./src", import.meta.url)),
+		},
+	},
+});
+```
 
 #### 安装使用
 
@@ -27,4 +49,4 @@ app.use(vue3Leaflet);
 
 #### 其他
 
-- 在使用过程中有什么问题可以 issue 我
+-   在使用过程中有什么问题可以 issue 我

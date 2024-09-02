@@ -35,21 +35,21 @@ layersOptions: {
 
 ```html
 <template>
-  <l-map style="height:400px;">
-    <l-base-layer :layersOptions="layersOptions"> </l-base-layer>
-  </l-map>
+	<l-map style="height:400px;">
+		<l-base-layer :layersOptions="layersOptions"> </l-base-layer>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      layersOptions: {
-        config: {
-          url: "https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
-          options: { foo: "bar" },
-        },
-      },
-    }),
-  };
+	export default {
+		data: () => ({
+			layersOptions: {
+				config: {
+					url: "https://webrd03.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
+					options: { foo: "bar" },
+				},
+			},
+		}),
+	};
 </script>
 ```
 
@@ -61,32 +61,32 @@ layersOptions: {
 
 ```html
 <template>
-  <l-map
-    style="height:400px;"
-    :center="[30, -89]"
-    :zoom="5"
-    :zoomControl="true"
-  >
-    <l-base-layer :layersOptions="layersOptions2"> </l-base-layer>
-  </l-map>
+	<l-map
+		style="height:400px;"
+		:center="[30, -89]"
+		:zoom="5"
+		:zoomControl="true"
+	>
+		<l-base-layer :layersOptions="layersOptions2"> </l-base-layer>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      layersOptions2: {
-        type: "wmsTileLayer",
-        config: {
-          url: "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
-          options: {
-            layers: "nexrad-n0r-900913",
-            format: "image/png",
-            transparent: true,
-            attribution: "Weather data © 2012 IEM Nexrad",
-          },
-        },
-      },
-    }),
-  };
+	export default {
+		data: () => ({
+			layersOptions2: {
+				type: "wmsTileLayer",
+				config: {
+					url: "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+					options: {
+						layers: "nexrad-n0r-900913",
+						format: "image/png",
+						transparent: true,
+						attribution: "Weather data © 2012 IEM Nexrad",
+					},
+				},
+			},
+		}),
+	};
 </script>
 ```
 
@@ -100,42 +100,47 @@ layersOptions: {
 
 ```html
 <template>
-  <l-map style="height:400px;" :crs="'EPSG4326'" :zoom="4" :zoomControl="true">
-    <l-base-layer :layersOptions="layersOptions3"> </l-base-layer>
-  </l-map>
+	<l-map
+		style="height:400px;"
+		:crs="'EPSG4326'"
+		:zoom="4"
+		:zoomControl="true"
+	>
+		<l-base-layer :layersOptions="layersOptions3"> </l-base-layer>
+	</l-map>
 </template>
 <script>
-  //   let { CRS } = require("leaflet");
-  export default {
-    data: () => ({
-      //   EPSG4326: CRS.EPSG4326,
-      layersOptions3: {
-        type: "wmtsTileLayer",
-        config: [
-          {
-            url: "http://t0.tianditu.gov.cn/vec_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
-            options: {
-              layer: "vec",
-              tileMatrixSet: "c",
-              format: "tiles",
-              style: "default",
-              type: "baseLayer",
-            },
-          },
-          {
-            url: "http://t0.tianditu.gov.cn/cva_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
-            options: {
-              layer: "cva",
-              tileMatrixSet: "c",
-              format: "tiles",
-              style: "default",
-              type: "baseLayer",
-            },
-          },
-        ],
-      },
-    }),
-  };
+	//   let { CRS } = require("leaflet");
+	export default {
+		data: () => ({
+			//   EPSG4326: CRS.EPSG4326,
+			layersOptions3: {
+				type: "wmtsTileLayer",
+				config: [
+					{
+						url: "http://t0.tianditu.gov.cn/vec_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
+						options: {
+							layer: "vec",
+							tileMatrixSet: "c",
+							format: "tiles",
+							style: "default",
+							type: "baseLayer",
+						},
+					},
+					{
+						url: "http://t0.tianditu.gov.cn/cva_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
+						options: {
+							layer: "cva",
+							tileMatrixSet: "c",
+							format: "tiles",
+							style: "default",
+							type: "baseLayer",
+						},
+					},
+				],
+			},
+		}),
+	};
 </script>
 ```
 
@@ -147,29 +152,29 @@ layersOptions: {
 
 ```html
 <template>
-  <l-map
-    style="height:400px;"
-    :center="[40.73903079078143, -74.17453765869142]"
-    :zoom="12"
-  >
-    <l-base-layer :layersOptions="layersOptions4"> </l-base-layer>
-  </l-map>
+	<l-map
+		style="height:400px;"
+		:center="[40.73903079078143, -74.17453765869142]"
+		:zoom="12"
+	>
+		<l-base-layer :layersOptions="layersOptions4"> </l-base-layer>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      layersOptions4: {
-        type: "imageOverlay",
-        config: {
-          url: "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
-          bounds: [
-            [40.712216, -74.22655],
-            [40.773941, -74.12544],
-          ],
-        },
-      },
-    }),
-  };
+	export default {
+		data: () => ({
+			layersOptions4: {
+				type: "imageOverlay",
+				config: {
+					url: "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+					bounds: [
+						[40.712216, -74.22655],
+						[40.773941, -74.12544],
+					],
+				},
+			},
+		}),
+	};
 </script>
 ```
 
@@ -181,29 +186,29 @@ layersOptions: {
 
 ```html
 <template>
-  <l-map
-    style="height:400px;"
-    :center="[22.863521826289627, -115.98632991313936]"
-    :zoom="5"
-  >
-    <l-base-layer :layersOptions="layersOptions5"> </l-base-layer>
-  </l-map>
+	<l-map
+		style="height:400px;"
+		:center="[22.863521826289627, -115.98632991313936]"
+		:zoom="5"
+	>
+		<l-base-layer :layersOptions="layersOptions5"> </l-base-layer>
+	</l-map>
 </template>
 <script>
-  export default {
-    data: () => ({
-      layersOptions5: {
-        type: "videoOverlay",
-        config: {
-          url: "https://www.mapbox.com/bites/00188/patricia_nasa.webm",
-          bounds: [
-            [32, -130],
-            [13, -100],
-          ],
-        },
-      },
-    }),
-  };
+	export default {
+		data: () => ({
+			layersOptions5: {
+				type: "videoOverlay",
+				config: {
+					url: "https://www.mapbox.com/bites/00188/patricia_nasa.webm",
+					bounds: [
+						[32, -130],
+						[13, -100],
+					],
+				},
+			},
+		}),
+	};
 </script>
 ```
 
@@ -223,98 +228,103 @@ layersOptions: {
 
 ```html
 <template>
-  <l-map style="height:400px;" :crs="'EPSG4326'" :zoom="2" :zoomControl="true">
-    <l-base-layer :layersOptions="layersOptions6"> </l-base-layer>
-  </l-map>
+	<l-map
+		style="height:400px;"
+		:crs="'EPSG4326'"
+		:zoom="2"
+		:zoomControl="true"
+	>
+		<l-base-layer :layersOptions="layersOptions6"> </l-base-layer>
+	</l-map>
 </template>
 <script>
-  //   let { CRS } = require("leaflet");
-  export default {
-    data: () => ({
-      //   EPSG4326: CRS.EPSG4326,
-      layersOptions6: [
-        {
-          type: "wmtsTileLayer",
-          nameClass: "vector",
-          name: "矢量test",
-          config: [
-            {
-              url: "http://t0.tianditu.gov.cn/vec_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
-              options: {
-                layer: "vec",
-                tileMatrixSet: "c",
-                format: "tiles",
-                style: "default",
-                type: "baseLayer",
-              },
-            },
-            {
-              url: "http://t0.tianditu.gov.cn/cva_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
-              options: {
-                layer: "cva",
-                tileMatrixSet: "c",
-                format: "tiles",
-                style: "default",
-                type: "baseLayer",
-              },
-            },
-          ],
-        },
-        {
-          type: "wmtsTileLayer",
-          nameClass: "terrain",
-          config: [
-            {
-              url: "http://t0.tianditu.gov.cn/ter_c/wmts?tk=5f62055ba4a942589b724283706c399a",
-              options: {
-                layer: "ter",
-                tileMatrixSet: "c",
-                format: "tiles",
-                style: "default",
-                type: "baseLayer",
-              },
-            },
-            {
-              url: "http://t0.tianditu.gov.cn/cta_c/wmts?tk=5f62055ba4a942589b724283706c399a",
-              options: {
-                layer: "cta",
-                tileMatrixSet: "c",
-                format: "tiles",
-                style: "default",
-                type: "baseLayer",
-              },
-            },
-          ],
-        },
-        {
-          type: "wmtsTileLayer",
-          nameClass: "image",
-          config: [
-            {
-              url: "http://t0.tianditu.gov.cn/img_c/wmts?tk=5f62055ba4a942589b724283706c399a",
-              options: {
-                layer: "img",
-                tileMatrixSet: "c",
-                format: "tiles",
-                style: "default",
-                type: "baseLayer",
-              },
-            },
-            {
-              url: "http://t0.tianditu.gov.cn/cia_c/wmts?tk=5f62055ba4a942589b724283706c399a",
-              options: {
-                layer: "cia",
-                tileMatrixSet: "c",
-                format: "tiles",
-                style: "default",
-                type: "baseLayer",
-              },
-            },
-          ],
-        },
-      ],
-    }),
-  };
+	//   let { CRS } = require("leaflet");
+	export default {
+		data: () => ({
+			//   EPSG4326: CRS.EPSG4326,
+			layersOptions6: [
+				{
+					type: "wmtsTileLayer",
+					nameClass: "vector",
+					name: "矢量test",
+					config: [
+						{
+							url: "http://t0.tianditu.gov.cn/vec_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
+							options: {
+								layer: "vec",
+								tileMatrixSet: "c",
+								format: "tiles",
+								style: "default",
+								type: "baseLayer",
+							},
+						},
+						{
+							url: "http://t0.tianditu.gov.cn/cva_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
+							options: {
+								layer: "cva",
+								tileMatrixSet: "c",
+								format: "tiles",
+								style: "default",
+								type: "baseLayer",
+							},
+						},
+					],
+				},
+				{
+					type: "wmtsTileLayer",
+					nameClass: "terrain",
+					config: [
+						{
+							url: "http://t0.tianditu.gov.cn/ter_c/wmts?tk=5f62055ba4a942589b724283706c399a",
+							options: {
+								layer: "ter",
+								tileMatrixSet: "c",
+								format: "tiles",
+								style: "default",
+								type: "baseLayer",
+							},
+						},
+						{
+							url: "http://t0.tianditu.gov.cn/cta_c/wmts?tk=5f62055ba4a942589b724283706c399a",
+							options: {
+								layer: "cta",
+								tileMatrixSet: "c",
+								format: "tiles",
+								style: "default",
+								type: "baseLayer",
+							},
+						},
+					],
+				},
+				{
+					type: "wmtsTileLayer",
+					nameClass: "image",
+					config: [
+						{
+							url: "http://t0.tianditu.gov.cn/img_c/wmts?tk=5f62055ba4a942589b724283706c399a",
+							options: {
+								layer: "img",
+								tileMatrixSet: "c",
+								format: "tiles",
+								style: "default",
+								type: "baseLayer",
+							},
+						},
+						{
+							url: "http://t0.tianditu.gov.cn/cia_c/wmts?tk=5f62055ba4a942589b724283706c399a",
+							options: {
+								layer: "cia",
+								tileMatrixSet: "c",
+								format: "tiles",
+								style: "default",
+								type: "baseLayer",
+							},
+						},
+					],
+				},
+			],
+		}),
+	};
 </script>
 ```
 
@@ -340,117 +350,117 @@ layersOptions: {
 
 ```html
 <template>
-  <l-map style="height:400px;" :crs="'EPSG4326'" :zoom="2">
-    <l-base-layer
-      :dToB="dToB"
-      :position="position"
-      :layersOptions="layersOptions7"
-    >
-    </l-base-layer>
-  </l-map>
+	<l-map style="height:400px;" :crs="'EPSG4326'" :zoom="2">
+		<l-base-layer
+			:dToB="dToB"
+			:position="position"
+			:layersOptions="layersOptions7"
+		>
+		</l-base-layer>
+	</l-map>
 </template>
 <script>
-  //   let { CRS } = require("leaflet");
-  export default {
-    data: () => ({
-      //   EPSG4326: CRS.EPSG4326,
-      dToB: "60px 10px",
-      position: "topleft",
-      layersOptions7: [
-        {
-          type: "wmtsTileLayer",
-          nameClass: "customClass",
-          name: "custom",
-          config: {
-            url: "http://t0.tianditu.gov.cn/ter_c/wmts?tk=5f62055ba4a942589b724283706c399a",
-            options: {
-              layer: "ter",
-              tileMatrixSet: "c",
-              format: "tiles",
-              style: "default",
-              type: "baseLayer",
-            },
-          },
-        },
-        {
-          type: "wmtsTileLayer",
-          nameClass: "vector",
-          name: "矢量图",
-          config: {
-            url: "http://t0.tianditu.gov.cn/vec_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
-            options: {
-              layer: "vec",
-              tileMatrixSet: "c",
-              format: "tiles",
-              style: "default",
-              type: "baseLayer",
-            },
-          },
-        },
-        {
-          type: "wmtsTileLayer",
-          nameClass: "earth",
-          name: "地理坐标",
-          config: {
-            url: "http://t0.tianditu.gov.cn/cva_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
-            options: {
-              layer: "cva",
-              tileMatrixSet: "c",
-              format: "tiles",
-              style: "default",
-              type: "baseLayer",
-            },
-          },
-        },
-        {
-          type: "wmtsTileLayer",
-          nameClass: "terrain",
-          config: [
-            {
-              url: "http://t0.tianditu.gov.cn/ter_c/wmts?tk=5f62055ba4a942589b724283706c399a",
-              options: {
-                layer: "ter",
-                tileMatrixSet: "c",
-                format: "tiles",
-                style: "default",
-                type: "baseLayer",
-              },
-            },
-            {
-              url: "http://t0.tianditu.gov.cn/cta_c/wmts?tk=5f62055ba4a942589b724283706c399a",
-              options: {
-                layer: "cta",
-                tileMatrixSet: "c",
-                format: "tiles",
-                style: "default",
-                type: "baseLayer",
-              },
-            },
-          ],
-        },
-        {
-          type: "wmtsTileLayer",
-          nameClass: "image",
-          name: "只有影像",
-          config: {
-            url: "http://t0.tianditu.gov.cn/img_c/wmts?tk=5f62055ba4a942589b724283706c399a",
-            options: {
-              layer: "img",
-              tileMatrixSet: "c",
-              format: "tiles",
-              style: "default",
-              type: "baseLayer",
-            },
-          },
-        },
-      ],
-    }),
-  };
+	//   let { CRS } = require("leaflet");
+	export default {
+		data: () => ({
+			//   EPSG4326: CRS.EPSG4326,
+			dToB: "60px 10px",
+			position: "topleft",
+			layersOptions7: [
+				{
+					type: "wmtsTileLayer",
+					nameClass: "customClass",
+					name: "custom",
+					config: {
+						url: "http://t0.tianditu.gov.cn/ter_c/wmts?tk=5f62055ba4a942589b724283706c399a",
+						options: {
+							layer: "ter",
+							tileMatrixSet: "c",
+							format: "tiles",
+							style: "default",
+							type: "baseLayer",
+						},
+					},
+				},
+				{
+					type: "wmtsTileLayer",
+					nameClass: "vector",
+					name: "矢量图",
+					config: {
+						url: "http://t0.tianditu.gov.cn/vec_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
+						options: {
+							layer: "vec",
+							tileMatrixSet: "c",
+							format: "tiles",
+							style: "default",
+							type: "baseLayer",
+						},
+					},
+				},
+				{
+					type: "wmtsTileLayer",
+					nameClass: "earth",
+					name: "地理坐标",
+					config: {
+						url: "http://t0.tianditu.gov.cn/cva_c/wmts?tk=3133b000f831d898dc3a8f9bcff6ddf4",
+						options: {
+							layer: "cva",
+							tileMatrixSet: "c",
+							format: "tiles",
+							style: "default",
+							type: "baseLayer",
+						},
+					},
+				},
+				{
+					type: "wmtsTileLayer",
+					nameClass: "terrain",
+					config: [
+						{
+							url: "http://t0.tianditu.gov.cn/ter_c/wmts?tk=5f62055ba4a942589b724283706c399a",
+							options: {
+								layer: "ter",
+								tileMatrixSet: "c",
+								format: "tiles",
+								style: "default",
+								type: "baseLayer",
+							},
+						},
+						{
+							url: "http://t0.tianditu.gov.cn/cta_c/wmts?tk=5f62055ba4a942589b724283706c399a",
+							options: {
+								layer: "cta",
+								tileMatrixSet: "c",
+								format: "tiles",
+								style: "default",
+								type: "baseLayer",
+							},
+						},
+					],
+				},
+				{
+					type: "wmtsTileLayer",
+					nameClass: "image",
+					name: "只有影像",
+					config: {
+						url: "http://t0.tianditu.gov.cn/img_c/wmts?tk=5f62055ba4a942589b724283706c399a",
+						options: {
+							layer: "img",
+							tileMatrixSet: "c",
+							format: "tiles",
+							style: "default",
+							type: "baseLayer",
+						},
+					},
+				},
+			],
+		}),
+	};
 </script>
 <style>
-  .customClass {
-    background-color: red;
-  }
+	.customClass {
+		background-color: red;
+	}
 </style>
 ```
 
