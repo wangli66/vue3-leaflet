@@ -10,7 +10,9 @@ github 预览 demo 地址：https://wangli66.github.io/vue3-leaflet/
 
 gittee 预览 demo 地址：http://wangli66.gitee.io/vue3-leaflet/（地址暂时无法访问）
 
-前言说明：由于 vite 支持 esm 的写法，本组件依赖的 leaflet 是 common 写法；故续安装插件@originjs/vite-plugin-commonjs；
+
+
+前言说明：由于 vite 支持 esm 的写法，本组件依赖的 leaflet 是 common 写法；故需安装插件@originjs/vite-plugin-commonjs；
 
 ```js
 npm install @originjs/vite-plugin-commonjs --save-dev
