@@ -6,6 +6,7 @@
 				v-for="(layer, lIndex) in currentLayerOptions"
 				:key="randomNum + '-' + lIndex"
 				v-bind="layer"
+				ref="layerCompRef"
 			></component>
 		</template>
 		<template v-else-if="typeof currentLayerOptions == 'object'">
@@ -13,6 +14,7 @@
 				:is="layerComp"
 				v-bind="currentLayerOptions"
 				:key="randomNum"
+				ref="layerCompRef"
 			></component>
 		</template>
 		<div
@@ -43,7 +45,7 @@
 </template>
 
 <script>
-import {shallowRef} from 'vue'
+import { shallowRef, ref } from "vue";
 import Options from "../../../mixins/Options.js";
 
 import tileLayer from "../../tileLayer/src/main.vue";
@@ -105,6 +107,12 @@ export default {
 				// }
 			},
 		},
+	},
+	setup() {
+		const layerCompRef = ref();
+		return {
+			layerCompRef,
+		};
 	},
 	data() {
 		return {
@@ -259,7 +267,7 @@ export default {
 	mounted() {
 		// this.initLeafletObject();
 		// this.getLayerComp();
-		this.self = this.layerComp.self;
+		this.self = this.layerCompRef;
 	},
 };
 </script>
